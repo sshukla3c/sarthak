@@ -1,0 +1,30 @@
+:root {
+  /* Blue theme (default) */
+  --color-primary-light: #60a5fa;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+}
+
+[data-theme-color="purple"] {
+  --color-primary-light: #a78bfa;
+  --color-primary: #8b5cf6;
+  --color-primary-dark: #7c3aed;
+}
+
+[data-theme-color="pink"] {
+  --color-primary-light: #f472b6;
+  --color-primary: #ec4899;
+  --color-primary-dark: #db2777;
+}
+
+[data-theme-color="green"] {
+  --color-primary-light: #34d399;
+  --color-primary: #10b981;
+  --color-primary-dark: #059669;
+}
+
+[data-theme-color="orange"] {
+  --color-primary-light: #fbbf24;
+  --color-primary: #f59e0b;
+  --color-primary-dark: #d97706;
+}
