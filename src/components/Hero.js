@@ -30,6 +30,29 @@ const Hero = () => {
     }
   };
 
+  const getThemeAnimation = () => {
+    switch (theme) {
+      case "blue":
+        return "animate-pulse";
+      case "purple":
+        return "animate-bounce";
+      case "pink":
+        return "animate-spin";
+      case "green":
+        return "animate-ping";
+      case "yellow":
+        return "animate-pulse";
+      case "indigo":
+        return "animate-bounce";
+      case "red":
+        return "animate-spin";
+      case "teal":
+        return "animate-ping";
+      default:
+        return "animate-pulse";
+    }
+  };
+
   const stats = [
     { value: "4.5+", label: "Years Experience" },
     { value: "50+", label: "Projects Completed" },
@@ -116,11 +139,17 @@ const Hero = () => {
       id="home"
       className={`section min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br ${getGradientColors()} transition-colors duration-500`}
     >
-      {/* Add gradient overlays */}
+      {/* Add animated gradient overlays */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 -right-20 w-96 h-96 bg-gradient-to-br from-pink-500/20 to-rose-500/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 left-1/3 w-72 h-72 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl" />
+        <div
+          className={`absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-${currentThemeColor}-500/20 to-${currentThemeColor}-600/20 rounded-full blur-3xl ${getThemeAnimation()}`}
+        />
+        <div
+          className={`absolute top-1/2 -right-20 w-96 h-96 bg-gradient-to-br from-${currentThemeColor}-400/20 to-${currentThemeColor}-500/20 rounded-full blur-3xl ${getThemeAnimation()}`}
+        />
+        <div
+          className={`absolute -bottom-40 left-1/3 w-72 h-72 bg-gradient-to-br from-${currentThemeColor}-300/20 to-${currentThemeColor}-400/20 rounded-full blur-3xl ${getThemeAnimation()}`}
+        />
       </div>
 
       {/* Animated background elements */}
@@ -168,40 +197,66 @@ const Hero = () => {
               transition={{ duration: 0.5 }}
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Hi, I'm{" "}
-                <span className={`text-${currentThemeColor}-500`}>Sarthak</span>
+                <motion.span
+                  className={`text-${currentThemeColor}-400 inline-block`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Hi, I'm
+                </motion.span>{" "}
+                <motion.span
+                  className={`text-${currentThemeColor}-600 inline-block`}
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  Sarthak
+                </motion.span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-6">
+              <motion.p
+                className={`text-lg md:text-xl text-${currentThemeColor}-700 dark:text-${currentThemeColor}-300 mb-6`}
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 A passionate Full Stack Developer crafting beautiful and
                 functional web experiences
-              </p>
+              </motion.p>
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <motion.a
                   href="#contact"
-                  className={`btn btn-primary bg-${currentThemeColor}-500 hover:bg-${currentThemeColor}-600`}
-                  whileHover={{ scale: 1.05 }}
+                  className={`btn btn-primary bg-${currentThemeColor}-500 hover:bg-${currentThemeColor}-600 text-white shadow-lg hover:shadow-xl transition-all duration-300`}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: `0 0 20px ${currentThemeColor}-500/50`,
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Get in Touch
                 </motion.a>
                 <motion.a
                   href="#projects"
-                  className="btn btn-outline"
-                  whileHover={{ scale: 1.05 }}
+                  className={`btn btn-outline border-2 border-${currentThemeColor}-500 text-${currentThemeColor}-500 hover:bg-${currentThemeColor}-500 hover:text-white transition-all duration-300`}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: `0 0 20px ${currentThemeColor}-500/30`,
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   View Projects
                 </motion.a>
               </div>
 
-              {/* Add social and coding profile links */}
+              {/* Social and coding profile links with theme-based hover effects */}
               <div className="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
                 <motion.a
                   href="https://www.hackerrank.com/profile/sarthak1shukla"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                  whileHover={{ scale: 1.05 }}
+                  className={`flex items-center gap-2 text-${currentThemeColor}-600 dark:text-${currentThemeColor}-400 hover:text-${currentThemeColor}-700 dark:hover:text-${currentThemeColor}-300 transition-colors`}
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: 5,
+                    color: `var(--${currentThemeColor}-500)`,
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg
@@ -218,8 +273,12 @@ const Hero = () => {
                   href="https://leetcode.com/u/sarthak1shukla/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
-                  whileHover={{ scale: 1.05 }}
+                  className={`flex items-center gap-2 text-${currentThemeColor}-600 dark:text-${currentThemeColor}-400 hover:text-${currentThemeColor}-700 dark:hover:text-${currentThemeColor}-300 transition-colors`}
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: -5,
+                    color: `var(--${currentThemeColor}-500)`,
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg
@@ -227,15 +286,19 @@ const Hero = () => {
                     viewBox="0 0 24 24"
                     fill="currentColor"
                   >
-                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a1.67 1.67 0 0 0-.415 1.2.67.67 0 0 0 .255.426L4.92 12.81a1.47 1.47 0 0 0 .678.42 1.4 1.4 0 0 0 .82-.044l1.9-.381 3.786 3.786 1.9-.381a1.4 1.4 0 0 0 .82-.044 1.47 1.47 0 0 0 .678-.42l1.926-1.926a.67.67 0 0 0 .255-.426 1.67 1.67 0 0 0-.415-1.2l-3.854-4.126L14.444.438A1.374 1.374 0 0 0 13.483 0zm-2.866 12.815l-1.9.381a.67.67 0 0 1-.82-.044.47.47 0 0 1-.255-.426l-1.926-1.926a1.67 1.67 0 0 1 .415-1.2l3.854-4.126 5.406-5.406a1.374 1.374 0 0 1 .961-.438 1.374 1.374 0 0 1 .961.438l5.406 5.406 3.854 4.126a1.67 1.67 0 0 1 .415 1.2.67.67 0 0 1-.255.426l-1.926 1.926a1.47 1.47 0 0 1-.678.42 1.4 1.4 0 0 1-.82-.044l-1.9-.381-3.786-3.786-1.9.381z" />
+                    <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a1.67 1.67 0 0 0-.415 1.2.67.67 0 0 0 .255.426L4.92 12.81a1.47 1.47 0 0 0 .678.42 1.4 1.4 0 0 0 .82-.044l1.9-.381 3.786 3.786 1.9-.381a1.4 1.4 0 0 0 .82-.044 1.47 1.47 0 0 0 .678-.42l1.926-1.926a.67.67 0 0 0 .255-.426 1.67 1.67 0 0 0-.415-1.2l-3.854-4.126 5.406-5.406a1.374 1.374 0 0 0 .961-.438 1.374 1.374 0 0 0 .961.438l5.406 5.406 3.854 4.126a1.67 1.67 0 0 1 .415 1.2.67.67 0 0 1-.255.426l-1.926 1.926a1.47 1.47 0 0 1-.678.42 1.4 1.4 0 0 1-.82-.044l-1.9-.381-3.786-3.786-1.9.381z" />
                   </svg>
                   <span>LeetCode</span>
                 </motion.a>
 
                 <motion.a
                   href="mailto:sarthak1shukla@gmail.com"
-                  className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors"
-                  whileHover={{ scale: 1.05 }}
+                  className={`flex items-center gap-2 text-${currentThemeColor}-600 dark:text-${currentThemeColor}-400 hover:text-${currentThemeColor}-700 dark:hover:text-${currentThemeColor}-300 transition-colors`}
+                  whileHover={{
+                    scale: 1.05,
+                    rotate: 5,
+                    color: `var(--${currentThemeColor}-500)`,
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg
