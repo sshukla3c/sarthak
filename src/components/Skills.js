@@ -22,10 +22,10 @@ const Skills = () => {
       category: "Backend",
       icon: "⚙️",
       items: [
-        { name: "Node.js", level: 85 },
-        { name: "Express.js", level: 80 },
-        { name: "MongoDB", level: 85 },
-        { name: "PostgreSQL", level: 75 },
+        { name: "PHP", level: 80 },
+        { name: "Node.js", level: 70 },
+        { name: "Express.js", level: 65 },
+        { name: "MongoDB", level: 70 },
         { name: "REST APIs", level: 90 },
       ],
     },
@@ -115,7 +115,10 @@ const Skills = () => {
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className={`h-full bg-gradient-to-r from-${currentThemeColor}-400 to-${currentThemeColor}-600 rounded-full`}
+                        style={{
+                          background: `linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark))`,
+                        }}
+                        className="h-full rounded-full"
                       />
                     </div>
                   </div>

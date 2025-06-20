@@ -149,7 +149,7 @@ const Projects = () => {
             href="https://github.com/sarthak1shukla"
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-${currentThemeColor}-400 to-${currentThemeColor}-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300`}
+            className={`inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-${currentThemeColor}-500 to-${currentThemeColor}-700 text-black dark:text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300`}
           >
             View More Projects on GitHub
             <svg
